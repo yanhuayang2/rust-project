@@ -16,7 +16,7 @@ impl Server {
 
         loop {
             match listener.accept() {
-                Ok((mut stream, addr)) => {
+                Ok((mut stream, _)) => {
                     let mut buffer = [0; 1024];
                     match stream.read(&mut buffer) {
                         Ok(_) => {
