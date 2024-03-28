@@ -1,3 +1,2 @@
-[null]
-进度：解析http头
-啦啦啦啦
+[null]啦啦啦啦
+进度：实现response， copy特性

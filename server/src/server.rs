@@ -22,15 +22,16 @@ impl Server {
                         Ok(_) => {
                             println!("Received a request: {:?}", String::from_utf8_lossy(&buffer));
                             match Request::try_from(&buffer[..]) {
-                                Ok(request) => {},
-                                Err(e) => println!("Failed to parse the request {}", e)
+                                Ok(request) => {
+                                    dbg!(request);
+                                },
+                                Err(e) => println!("Failed to parse the request {}", e),
                             }
-                        
                         }
-                        Err(e) => println!("Failed to read from connection: {}", e)
+                        Err(e) => println!("Failed to read from connection: {}", e),
                     }
                 }
-                Err(e) => println!("Failed to establish a connection: {}", e)
+                Err(e) => println!("Failed to establish a connection: {}", e),
             }
         }
     }
