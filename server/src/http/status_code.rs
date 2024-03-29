@@ -1,4 +1,6 @@
 use std::fmt::{Display, Debug, Formatter, Result as FmtResult};
+
+#[derive(Clone, Copy, Debug)]
 pub enum StatusCode{
     Ok = 200,
     BadRequest = 400,
@@ -15,3 +17,8 @@ impl StatusCode {
     }
 }
 
+impl Display for StatusCode {
+    fn fmt(&self, f: &mut Formatter) -> FmtResult {
+        write!(f, "{}", *self as u16)
+    }
+}
