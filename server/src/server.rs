@@ -28,8 +28,10 @@ impl Server {
                 Ok((mut stream, _)) => {
                     let mut buffer = [0; 1024];
                     match stream.read(&mut buffer) {
-                        Ok(_) => {
-                            println!("Received a request: {:?}", String::from_utf8_lossy(&buffer));
+                        Ok(size) => {
+                            let s = String::from_utf8_lossy(&buffer[..size]);
+                            s.split("\r\n").for_each(|line| println!("{}", line));
+                            //println!("Received a request: {:?}", String::from_utf8_lossy(&buffer[..size]));
                             let response = match Request::try_from(&buffer[..]) {
                                 Ok(request) => handler.handle_request(&request),
                                 Err(e) => handler.handle_bad_request(&e),
